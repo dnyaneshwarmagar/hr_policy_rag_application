@@ -1,2 +1,5 @@
-venv/
+myvenv/
+
+data/
+
 .env
