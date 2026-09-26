@@ -1,0 +1,41 @@
+2026-09-26 16:00:38,629 | INFO | __main__ | === CLI run started ===
+2026-09-26 16:00:38,629 | INFO | hr_assistant.pipeline | Building HR assistant...
+2026-09-26 16:00:38,629 | INFO | hr_assistant.pipeline | No vector store on disk, building one from scratch
+2026-09-26 16:00:38,629 | INFO | hr_assistant.document_loader | Loading document from 'data\hr_policy.txt'
+2026-09-26 16:00:38,645 | INFO | hr_assistant.document_loader | Loaded 1 document(s)
+2026-09-26 16:00:38,647 | INFO | hr_assistant.splitter | Split document(s) into 9 chunk(s)
+2026-09-26 16:00:38,647 | INFO | hr_assistant.vector_store | Embedding 9 chunk(s) and building FAISS index...
+2026-09-26 16:00:38,648 | INFO | hr_assistant.embeddings | Initializing embeddings model 'jina-embeddings-v2-base-en'
+2026-09-26 16:00:40,984 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-09-26 16:00:40,984 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-09-26 16:00:40,984 | INFO | faiss.loader | Loading faiss.
+2026-09-26 16:00:41,795 | INFO | faiss.loader | Successfully loaded faiss.
+2026-09-26 16:00:41,795 | INFO | hr_assistant.vector_store | FAISS index built in memory
+2026-09-26 16:00:41,812 | INFO | hr_assistant.vector_store | Saved FAISS index to 'data\faiss_index'
+2026-09-26 16:00:41,812 | INFO | hr_assistant.vector_store | Creating retriever with top_k=3
+2026-09-26 16:00:41,815 | INFO | hr_assistant.llm | Initializing LLM 'openai/gpt-oss-20b'
+2026-09-26 16:00:42,176 | INFO | hr_assistant.agent | Creating HR agent with 1 tool(s)
+2026-09-26 16:00:42,176 | INFO | hr_assistant.agent | HR agent ready
+2026-09-26 16:00:42,179 | INFO | hr_assistant.pipeline | HR assistant is ready to take questions
+2026-09-26 16:00:42,179 | INFO | hr_assistant.pipeline | User question: How many paid annual leave days do I get?
+2026-09-26 16:00:43,537 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-26 16:00:43,568 | INFO | hr_assistant.tools | search_hr_policy called with query: How many paid annual leave days do I get?
+2026-09-26 16:00:47,884 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-26 16:00:48,387 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-26 16:00:48,413 | INFO | hr_assistant.pipeline | Final answer: You’re entitled to **20 days of paid annual leave per calendar year** as a full‑time employee. If you have any questions about how to request time off or carry forward unused days, just let me know!
+2026-09-26 16:00:48,413 | INFO | __main__ | === CLI run finished ===
+2026-09-26 16:00:48,413 | INFO | hr_assistant.pipeline | User question: What is the notice period during probation?
+2026-09-26 16:00:48,827 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-26 16:00:48,836 | INFO | hr_assistant.tools | search_hr_policy called with query: notice period during probation
+2026-09-26 16:00:49,499 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-26 16:00:50,324 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-26 16:00:50,324 | INFO | hr_assistant.pipeline | Final answer: During the probation period, the notice period is **15 days**.
+2026-09-26 16:00:50,324 | INFO | __main__ | === CLI run finished ===
+2026-09-26 16:00:50,324 | INFO | hr_assistant.pipeline | User question: Can I work from home every day?
+2026-09-26 16:00:50,828 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-26 16:00:50,828 | INFO | hr_assistant.tools | search_hr_policy called with query: work from home policy
+2026-09-26 16:00:51,680 | INFO | hr_assistant.tools | Found 3 matching chunk(s)
+2026-09-26 16:00:52,250 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-26 16:00:52,254 | INFO | hr_assistant.pipeline | Final answer: I’m sorry, but the company policy limits remote work to **up to 2 days per week** (subject to manager approval). Full‑time employees can request a fully remote arrangement only with written approval from the department head. So working from home every day isn’t permitted under the current policy.
+2026-09-26 16:00:52,255 | INFO | __main__ | === CLI run finished ===
