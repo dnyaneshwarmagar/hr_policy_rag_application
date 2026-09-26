@@ -11,7 +11,7 @@ from hr_assistant.pipeline import ask, build_hr_assistant
 logger = get_logger(__name__)
 
 st.set_page_config(page_title="HR Policy Assistant", page_icon="🤖")
-st.title("🤖 HR Policy Assistant")
+st.title("🤖 HR Policy Assistantttttttttt")
 st.caption("Ask me anything about the company HR policy document.")
 
 
@@ -44,4 +44,3 @@ if question:
             answer = ask(agent, question)
         st.markdown(answer)
     st.session_state.messages.append({"role": "assistant", "content": answer})
-app.py
