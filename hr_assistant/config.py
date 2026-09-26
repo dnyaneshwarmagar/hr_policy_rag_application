@@ -12,6 +12,19 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 
 
+# GUARD MODEL 
+
+GUARD_MODEL_NAME = "openai/gpt-oss-safeguard-20b"
+
+# TRACING 
+
+LANGSMITH_TRACING = os.getenv("LANGSMITH_TRACING", "false")
+LANGSMITH_ENDPOINT = os.getenv("LANGSMITH_ENDPOINT")
+LANGSMITH_API_KEY = os.getenv("LANGSMITH_API_KEY")
+LANGSMITH_PROJECT = os.getenv("LANGSMITH_PROJECT")
+
+
+
 ## DEFINE PATH - DATA / VECTOR STORE 
 
 DATA_FILE_PATH = os.path.join("data", "hr_policy.txt")
