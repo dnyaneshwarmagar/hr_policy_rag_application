@@ -20,12 +20,11 @@ from hr_assistant import config
 
 from hr_assistant.logger import get_logger
 
-
 logger = get_logger(__name__)
 
 REFUSAL_MESSAGE = "Sorry, I can't help with that request."
 
-# private varibales , private methods 
+# private varibales , private methods
 
 _guard_llm = ChatGroq(
     model=config.GUARD_MODEL_NAME,
@@ -34,13 +33,12 @@ _guard_llm = ChatGroq(
 )
 
 
-
 ##
 # {
 # "violation": 1,
 # "category": "Direct Override",
-# "rationale": "The input explicitly attempts to override system 
-# instructions by introducing the 'DAN' persona and requesting 
+# "rationale": "The input explicitly attempts to override system
+# instructions by introducing the 'DAN' persona and requesting
 # unrestricted behavior, which constitutes a clear prompt injection attack."
 # }
 
@@ -106,8 +104,8 @@ EXAMPLES
 """
 
 
+# check safety
 
-# check safety 
 
 def _check_safety(text: str, policy: str) -> tuple[bool, str]:
     """Return (is_safe, reason) for the given text under the given policy."""
@@ -123,17 +121,21 @@ def _check_safety(text: str, policy: str) -> tuple[bool, str]:
     return is_safe, reason
 
 
-# input safety 
+# input safety
 
 
 def check_input(question: str) -> tuple[bool, str]:
     """Check the user's question before the agent sees it."""
     is_safe, reason = _check_safety(question, INPUT_POLICY)
     if not is_safe:
-        logger.warning("Input guard BLOCKED question: %s | reason: %s", question, reason)
+        logger.warning(
+            "Input guard BLOCKED question: %s | reason: %s", question, reason
+        )
     return is_safe, reason
 
-#output safety
+
+# output safety
+
 
 def check_output(answer: str) -> tuple[bool, str]:
     """Check the agent's answer before showing it to the user."""
@@ -141,7 +143,3 @@ def check_output(answer: str) -> tuple[bool, str]:
     if not is_safe:
         logger.warning("Output guard BLOCKED answer: %s | reason: %s", answer, reason)
     return is_safe, reason
-
-
-
-

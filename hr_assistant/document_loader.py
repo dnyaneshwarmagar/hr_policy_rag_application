@@ -7,6 +7,7 @@ from hr_assistant.logger import get_logger
 
 logger = get_logger(__name__)
 
+
 def load_document(file_path: str = config.DATA_FILE_PATH):
     """Load a .txt file and return it as a list of LangChain Document objects."""
     logger.info("Loading document from '%s'", file_path)

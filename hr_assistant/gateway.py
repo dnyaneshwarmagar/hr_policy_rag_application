@@ -22,14 +22,14 @@ from portkey_ai import createHeaders, PORTKEY_GATEWAY_URL
 from hr_assistant import config
 from hr_assistant.logger import get_logger
 
-
 logger = get_logger(__name__)
 
 # my main Model - application
 # model routing
 
-PRIMARY_PROVIDER = "@hrpolicyrag"
+PRIMARY_PROVIDER = config.PRIMARY_PROVIDER_SLUG  # slug for the main app's LLM (Groq)
 
+JUDDGE_PROVIDER_SLUG = config.JUDDGE_PROVIDER_SLUG  # slug for the judge model (Groq)
 
 # acces our gateway
 # portkey - ai  - api key
@@ -38,18 +38,38 @@ PRIMARY_PROVIDER = "@hrpolicyrag"
 
 def get_gateway_llm() -> ChatOpenAI:
     """Return a chat model routed through Portkey (no config/fallback - see module docstring)."""
+
     logger.info("Routing LLM calls through Portkey (provider=%s)", PRIMARY_PROVIDER)
-    headers = createHeaders(api_key=config.PORTKEY_API_KEY,
-                provider=PRIMARY_PROVIDER)
+    headers = createHeaders(api_key=config.PORTKEY_API_KEY, provider=PRIMARY_PROVIDER)
     return ChatOpenAI(
-        api_key= config.PORTKEY_API_KEY,  # dummyy
+        api_key=config.PORTKEY_API_KEY,  # can pass dummyy too
         base_url=PORTKEY_GATEWAY_URL,
         model=config.LLM_MODEL_NAME,
-        default_headers=headers)
+        default_headers=headers,
+    )
 
-## user 
 
-#gateway 
+def get_judge_llm() -> ChatOpenAI:
+    """Return a judge model routed through Portkey (no config/fallback - see module docstring)."""
+
+    logger.info(
+        "Routing LLM calls for Judge through Portkey (provider=%s)",
+        JUDDGE_PROVIDER_SLUG,
+    )
+
+    headers = createHeaders(
+        api_key=config.PORTKEY_API_KEY, provider=JUDDGE_PROVIDER_SLUG
+    )
+    return ChatOpenAI(
+        api_key=config.PORTKEY_API_KEY,  # can pass dummyy too
+        base_url=PORTKEY_GATEWAY_URL,
+        model=config.LLM_MODEL_NAME,
+        default_headers=headers,
+    )
+
+
+## user
+
+# gateway
 
 # send groq , openai , gemini
-
