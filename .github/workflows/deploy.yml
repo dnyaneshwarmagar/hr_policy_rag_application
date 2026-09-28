@@ -104,7 +104,6 @@ jobs:
         run: |
           IMAGE="$REGISTRY/$ECR_REPOSITORY"
           docker build -t "$IMAGE:latest" .
-          docker push "$IMAGE:$GITHUB_SHA"
           docker push "$IMAGE:latest"
           echo "image=$IMAGE:$GITHUB_SHA" >> "$GITHUB_OUTPUT"
 
