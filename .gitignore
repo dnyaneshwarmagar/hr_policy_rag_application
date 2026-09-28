@@ -10,6 +10,6 @@ data/
 
 hr_assistant/__pycache__/
 
-hr-rag-accessKeys.csv
+hr-rag_accessKeys.csv
 
 hr.pem
