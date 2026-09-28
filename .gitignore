@@ -1,5 +1,15 @@
 myvenv/
 
+.env
+
+.env.docker
+
+logs/
+
 data/
 
-.env
+hr_assistant/__pycache__/
+
+hr-rag-accessKeys.csv
+
+hr.pem
