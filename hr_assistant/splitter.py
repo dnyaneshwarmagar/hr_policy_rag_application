@@ -2,7 +2,7 @@
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from hr_assistant import config 
+from hr_assistant import config
 from hr_assistant.logger import get_logger
 
 logger = get_logger(__name__)

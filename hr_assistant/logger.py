@@ -5,13 +5,12 @@ setting up its own. That way all logs (from document loading to the
 final answer) end up in one place, in one consistent format.
 """
 
-import logging 
-import os 
+import logging
+import os
 from datetime import datetime
 
-
 LOGS_DIR = "logs"
-os.makedirs(LOGS_DIR , exist_ok=True)
+os.makedirs(LOGS_DIR, exist_ok=True)
 
 # One log file per run, named with the time the run started.
 
@@ -27,6 +26,7 @@ logging.basicConfig(
         logging.StreamHandler(),
     ],
 )
+
 
 def get_logger(name: str) -> logging.Logger:
     return logging.getLogger(name)
